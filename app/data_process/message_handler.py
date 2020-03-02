@@ -60,7 +60,7 @@ def call_functions(word_list: list, pop_list: list, api_function, data):
 
     if '菜单' == word_list[2]:  # 列出现有的功能
         reply = common_func.show_menu()
-        api_function(sender_id, reply)
+        api_function(target_id, reply)
     elif "列出状态" == word_list[2]:  # 列出监听型函数的状态
         pass
     elif '天气' in word_list:
@@ -68,7 +68,7 @@ def call_functions(word_list: list, pop_list: list, api_function, data):
         api_function(target_id, reply)
     elif sender_id == app.robot_admin and '用户' in word_list:
         reply = common_func.manage_privilege(word_package)
-        api_function(sender_id, reply)
+        api_function(target_id, reply)
     elif '配置' in word_list and '保存' in word_list:
         reply = common_func.save_current_config()
-        api_function(sender_id, reply)
+        api_function(target_id, reply)
