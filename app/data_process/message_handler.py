@@ -33,10 +33,18 @@ def handle_message(data, func):
     if word_list[0] != '#' or sender_id not in app.authorized_users:
         return
     print(word_list)
-    call_functions(word_list, pop_list, func, sender_id)
+
+    call_functions(word_list, pop_list, func, data)
 
 
-def call_functions(word_list: list, pop_list: list, api_function, sender_id):
+def call_functions(word_list: list, pop_list: list, api_function, data):
+    sender_id = data['sender']['user_id']  # 发送者
+    target_id = data['sender']['user_id']  # 要发给谁
+    if api_function.__name__ == api_func.send_group.__name__:
+        target_id = data['group_id']
+    elif api_function.__name__ == api_func.send_discuss.__name__:
+        target_id = data['discuss_id']
+
     word_package = [word_list[:-1], pop_list[:-1]]
     # 首先监听功能取得消息并处理
     for func in app.work_fun_list:
@@ -57,7 +65,7 @@ def call_functions(word_list: list, pop_list: list, api_function, sender_id):
         pass
     elif '天气' in word_list:
         reply = common_func.get_weather(word_list)
-        api_function(sender_id, reply)
+        api_function(target_id, reply)
     elif sender_id == app.robot_admin and '用户' in word_list:
         reply = common_func.manage_privilege(word_package)
         api_function(sender_id, reply)

@@ -4,6 +4,7 @@ import os
 import json
 from jieba import load_userdict
 from app.utils import constant
+from app.functions import listen_func, clock_func
 
 # 常量命名
 constant.APP_PATH = os.path.dirname(__file__)
@@ -27,7 +28,7 @@ listen_thread_list = []  # 监听型函数线程列表
 clock_thread_list = []  # 定时器型函数线程列表
 
 work_fun_list = [  # 所有工作型函数名的列表
-
+    [False, listen_func.repeater]
 ]
 clock_fun_list = [  # 所有定时器型函数名的列表
 

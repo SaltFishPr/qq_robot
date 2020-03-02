@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import os, sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # 获取该文件上一级的目录,添加到环境变量中
+
 import json
 import app.data_process
 from flask import Flask, request
