@@ -32,9 +32,8 @@ def handle_message(data, func):
         return
     if word_list[0] != '#' or sender_id not in app.authorized_users:
         return
-    print(word_list)
 
-    call_functions(word_list, pop_list, func, data)
+    call_functions(word_list[:-1], pop_list[:-1], func, data)
 
 
 def call_functions(word_list: list, pop_list: list, api_function, data):
@@ -46,6 +45,7 @@ def call_functions(word_list: list, pop_list: list, api_function, data):
         target_id = data['discuss_id']
 
     word_package = [word_list[:-1], pop_list[:-1]]
+    print(word_list, pop_list)
     # 首先监听功能取得消息并处理
     for func in app.work_fun_list:
         if func[0]:  # 如果是打开状态
@@ -72,3 +72,13 @@ def call_functions(word_list: list, pop_list: list, api_function, data):
     elif '配置' in word_list and '保存' in word_list:
         reply = common_func.save_current_config()
         api_function(target_id, reply)
+    elif '提醒我' in word_list:
+        reply = clock_func.analysis_create_clock(word_list, api_function, target_id)
+        api_function(target_id, reply)
+    elif '关闭闹钟' in word_list:
+        reply = clock_func.analysis_remove_clock(word_list)
+        api_function(target_id, reply)
+    elif '列出闹钟' in word_list:
+        reply = common_func.list_current_clocks()
+        api_function(target_id, reply)
+

@@ -96,7 +96,7 @@ def manage_privilege(message_package: list):
 # 保存当前配置信息
 def save_current_config():
     with open(constant.CONFIG_PATH, 'w') as f:
-        json.dump(app.config, f)
+        json.dump(app.config, f, sort_keys=True, indent=4)
     return "保存配置成功"
 
 
@@ -109,8 +109,26 @@ def show_menu():
     return res
 
 
-# 列出监听型函数的状态
-def show_listen_func_status():
+# 列出所有函数的开关情况
+def show_func_status():
+    pass
+
+
+# 列出订过的闹钟
+def list_current_clocks():
+    res = ''
+    for t in app.clock_thread_list:
+        if t[0].is_alive():
+            res += '{}: {},\n'.format(t[1], t[2])
+        else:
+            app.clock_thread_list.remove(t)
+    if res == '':
+        res = '当前无任何闹钟  '
+    return res[:-2]
+
+
+# 列出正在监听的函数
+def list_current_listen_func():
     pass
 
 
