@@ -58,10 +58,10 @@ def call_functions(word_list: list, pop_list: list, api_function, data):
         t.join()
     app.listen_thread_list = []  # 清空列表
 
-    if '菜单' == word_list[2]:  # 列出现有的功能
+    if '小Q菜单' in word_list:  # 列出现有的功能
         reply = common_func.show_menu()
         api_function(target_id, reply)
-    elif "列出状态" == word_list[2]:  # 列出监听型函数的状态
+    elif "列出状态" in word_list:  # 列出监听型函数的状态
         pass
     elif '天气' in word_list:
         reply = common_func.get_weather(word_list)
@@ -81,4 +81,6 @@ def call_functions(word_list: list, pop_list: list, api_function, data):
     elif '列出闹钟' in word_list:
         reply = common_func.list_current_clocks()
         api_function(target_id, reply)
-
+    else:
+        reply = "输入 小Q菜单 获取菜单喔"
+        api_function(target_id, reply)
