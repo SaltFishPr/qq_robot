@@ -23,6 +23,7 @@ with open(constant.CONFIG_PATH, 'r') as f:  # 加载config里的内容
 
 robot_admin: int = config['robot_admin']  # 机器人管理员
 authorized_users: list = config['user_list']  # 能够使用机器人的用户列表
+switch_list: list = config['switch_list']  # 接受消息的群列表
 
 listen_thread_list = []  # 监听型函数线程列表
 clock_thread_list = []  # 定时器型函数线程列表，保存[threading, clock_id, clock_content]
