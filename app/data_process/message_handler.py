@@ -47,11 +47,20 @@ def call_functions(word_list: list, pop_list: list, api_function, data):
     word_package = [word_list[:-1], pop_list[:-1]]
     print(word_list, pop_list)
 
-    if target_id not in app.switch_list and "开启小Q" not in word_list:
-        return
+    if target_id not in app.switch_list:
+        if "开启小Q" in word_list:
+            app.switch_list.append(target_id)
+            api_function(target_id, "宝宝上线啦")
+            return
+        else:
+            return
     else:
-        app.switch_list.append(target_id)
-        api_function(target_id, "宝宝上线啦")
+        if "开启小Q" in word_list:
+            api_function(target_id, "人家已经在这啦")
+            return
+        else:
+            pass
+
 
     # 首先监听功能取得消息并处理
     for func in app.work_fun_list:
@@ -72,7 +81,8 @@ def call_functions(word_list: list, pop_list: list, api_function, data):
         pass
     elif "关闭小Q" in word_list:
         app.switch_list.remove(target_id)
-        api_function(target_id, "哦呀斯密~")
+        print(app.switch_list)
+        api_function(target_id, "哦呀斯密纳塞~")
     elif '天气' in word_list:
         reply = common_func.get_weather(word_list)
         api_function(target_id, reply)
