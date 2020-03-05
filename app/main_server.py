@@ -16,6 +16,7 @@ bot_server: Flask = Flask(__name__)
 def server():
     data = request.get_data().decode('utf-8')
     data = json.loads(data)
+    print(data)
     # print(json.dumps(data, sort_keys=True, indent=4))  # 格式化输出json/字典
     app.data_process.data_unpack(data)
     return ''

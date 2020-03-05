@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import random
+import math
+from functools import reduce
+
 import requests
 import json
 import app
@@ -64,6 +68,7 @@ def manage_privilege(message_package: list):
     :param message_package:消息包，[词列表，词性列表]
     :return:
     """
+
     # 赋予权限
     def grant(user_id: int):
         app.authorized_users.append(user_id)
@@ -105,6 +110,8 @@ def show_menu():
     res = ""
     with open(constant.APP_PATH + "/res/menu.txt", 'r', encoding='utf-8') as f:
         for l in f:
+            if l[0] == '×':
+                continue
             res = res + l
     return res
 
@@ -132,5 +139,29 @@ def list_current_listen_func():
     pass
 
 
+# 发张涩图
+# def get_a_setu():
+#     index_num = random.randint(0, len(app.setu_list) - 1)
+#     setu_path = constant.SETU_PATH + '/' + app.setu_list[index_num]
+#     res = "[CQ:music,type=163,id=28406557]".format(setu_path)
+#     res = "[CQ:record,file=file:///F:/Programming/Python/qq_robot/app/res/audio/1.mp3]"
+#     print(res)
+#     return res
+
+
+# 搜索歌曲 前十排行
+def search_music(word_list: list):
+    index_num = word_list.index(':') if ':' in word_list else word_list.index('：')
+    music_name = reduce(lambda x, y: x + y, word_list[index_num + 1:])
+    temp = api_func.get_top_ten_music(music_name)
+    if temp is None:
+        return "没有这首歌的信息"
+    res = ""
+    for music in temp:
+        res += "专辑：{}，作者：{}，热度：{}，id:{}\n\n".format(music[0], music[2], math.ceil(int(music[3])/20.0) * "🔥", music[1])
+    return res
+
+
 if __name__ == '__main__':
-    print(show_menu())
+    print(math.ceil(int(100)/20.0) * 'huo')
+    pass

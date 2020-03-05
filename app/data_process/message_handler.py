@@ -61,7 +61,6 @@ def call_functions(word_list: list, pop_list: list, api_function, data):
         else:
             pass
 
-
     # 首先监听功能取得消息并处理
     for func in app.work_fun_list:
         if func[0]:  # 如果是打开状态
@@ -100,6 +99,12 @@ def call_functions(word_list: list, pop_list: list, api_function, data):
         api_function(target_id, reply)
     elif '列出闹钟' in word_list:
         reply = common_func.list_current_clocks()
+        api_function(target_id, reply)
+    elif '搜歌' in word_list:
+        reply = common_func.search_music(word_list)
+        api_function(target_id, reply)
+    elif '来张涩图' in word_list:
+        reply = common_func.get_a_setu()
         api_function(target_id, reply)
     else:
         reply = "输入<小Q菜单>获取菜单喔"

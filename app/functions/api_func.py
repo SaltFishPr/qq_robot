@@ -47,3 +47,23 @@ def get_strange_info(user_id):
     }
     api_url = 'http://{}:{}/get_stranger_info'.format(constant.HOST, constant.API_PORT)
     return json.loads(requests.post(api_url, data=data).text)
+
+
+# 获取网易云音乐歌曲信息
+def get_top_ten_music(s, search_type=1, offset=0, limit=10):
+    """
+    post http://music.163.com/api/search/pc/?s={}&offset={}&limit={}&type={}
+    :param s:
+    :param search_type: 搜索方式  1:music 10:专辑 100:歌手 1000:歌单 1002:用户 1004:mv 1006:歌词
+    :param offset: 从第offset个开始
+    :param limit: 获取数量
+    :return:[专辑名, 歌曲id, 作者名, 热度(分数)]
+    """
+    api_url = "http://music.163.com/api/search/pc/?s={}&offset={}&limit={}&type={}".format(s, offset, limit, search_type)
+    data = json.loads(requests.post(api_url).text)
+    if data['result']['songCount'] == 0:
+        return None
+    res = []
+    for temp in data['result']['songs']:
+        res.append([temp['album']['name'], temp['id'], temp['artists'][0]['name'], temp['popularity']])
+    return res
