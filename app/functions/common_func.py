@@ -162,6 +162,13 @@ def search_music(word_list: list):
     return res
 
 
+# 通过id获取歌曲分享
+def play_music(word_list):
+    music_id = word_list[-1]
+    res = "[CQ:music,type=163,id={}]".format(music_id)
+    return res
+
+
 if __name__ == '__main__':
     print(math.ceil(int(100)/20.0) * 'huo')
     pass

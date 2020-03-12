@@ -5,7 +5,7 @@ import jieba
 from jieba import posseg
 jieba.load_userdict('F:/Programming/Python/qq_robot/app/res/user_dict.txt')
 if __name__ == '__main__':
-    t1 = '关闭闹钟：1'
+    t1 = '播歌：1345646'
     word_list = []
     pop_list = []
     temp = posseg.cut(t1)

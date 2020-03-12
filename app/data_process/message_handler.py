@@ -103,6 +103,9 @@ def call_functions(word_list: list, pop_list: list, api_function, data):
     elif '搜歌' in word_list:
         reply = common_func.search_music(word_list)
         api_function(target_id, reply)
+    elif '播歌' in word_list:
+        reply = common_func.play_music(word_list)
+        api_function(target_id, reply)
     elif '来张涩图' in word_list:
         reply = common_func.get_a_setu()
         api_function(target_id, reply)
