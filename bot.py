@@ -3,16 +3,16 @@
 """
 nonebot 机器人启动文件
 """
-import jieba
-import nonebot
-import my_bot_config
 from os import path
 
-if __name__ == '__main__':
-    jieba.load_userdict("app/res/user_dict.txt")
+import nonebot
 
+import my_bot_config
+from app import constant
+
+if __name__ == '__main__':
     nonebot.init(my_bot_config)
     plugin_num = nonebot.load_plugins(path.join(path.dirname(__file__), 'app', 'plugins'),
-                                      'app.plugins')
+                                      constant.PLUGINS_PATH)
     print("成功加载{}个插件".format(plugin_num))
     nonebot.run()

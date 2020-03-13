@@ -46,7 +46,7 @@ async def _(session: CommandSession):
         # 需要连续接收用户输入，并且过程中不需要改变 current_key 时，使用此函数暂停会话。
         session.pause('我看不见啦！')
 
-    if stripped_arg == '算了':
+    if stripped_arg in ['算了', '不查了']:
         # 结束当前的会话
         session.finish("拜拜~")
 

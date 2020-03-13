@@ -14,3 +14,18 @@ async def word_cut(text_message):
     pop_list.append('x')
     return word_list, pop_list
 
+
+class Constant:
+    class ConstError(TypeError):
+        pass
+
+    class ConstCaseError(ConstError):
+        pass
+
+    def __setattr__(self, key: str, value):
+        if key in self.__dict__:
+            raise self.ConstError("Can't change const %s" % key)
+        if not key.isupper():
+            raise self.ConstCaseError(
+                "const name %s is not all uppercase" % key)
+        self.__dict__[key] = value
