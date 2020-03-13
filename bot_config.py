@@ -8,7 +8,7 @@ SUPERUSERS = {123456789}
 COMMAND_START = {'!', '！'}
 # nonebot.run()的ip和端口
 HOST = '127.0.0.1'
-PORT = 8080
+PORT = 8999
 # 机器人称呼，相当于@
 NICKNAME = {'小Q'}
 # 会话挂起持续时长

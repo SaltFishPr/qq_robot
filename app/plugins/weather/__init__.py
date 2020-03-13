@@ -16,7 +16,6 @@ from .data_source import get_weather_of_city, verifying_city
 
 @on_command('查天气', aliases=('天气预报',))
 async def weather(session: CommandSession):
-    print("on command")
     # 获得参数，如果没有这个参数，回复prompt等待用户补全参数
     # 注意，一旦传入arg_filters参数（参数过滤器），则等用户再次输入时，command_func.args_parser
     # 所注册的参数解析函数将不会被运行，而会在对current_arg依次运行过滤器之后直接将其放入state属性中。
@@ -29,12 +28,7 @@ async def weather(session: CommandSession):
 # 询问补全命令参数
 @weather.args_parser
 async def _(session: CommandSession):
-    print("on arg")
     stripped_arg = session.current_arg_text.strip()
-    print(session.is_first_run)
-    print("current_key", session.current_key)
-    print("stripped_arg", stripped_arg)
-
     # 如果是第一次进入命令, 填充已给参数
     if session.is_first_run:
         my_args = stripped_arg.split()
@@ -79,7 +73,6 @@ async def _(session: CommandSession):
 
 @on_natural_language(keywords={'天气'})
 async def _(session: NLPSession):
-    print("on nature")
     # 去掉消息首尾的空白符
     stripped_msg = session.msg_text.strip()
     word_list, _ = await word_cut(stripped_msg)
