@@ -9,9 +9,7 @@ def a(**kwargs):
 
 
 if __name__ == '__main__':
-    d = {'app_key': "13145646", 'asad': "sald"}
-    t = {}
-    for key,value in d.items():
-        t[key]=value
-    print(t)
+    s1 = "aaa"
+    s2 = "bbb"
+    l = ["aaa", "bbb", "ccc"]
     pass

@@ -54,7 +54,6 @@ def get_params(**kwargs):
     app_key = app.app_key
     # 基本参数
     params = {'app_id': app_id,
-              'session': '10000',
               'time_stamp': time_stamp,
               'nonce_str': nonce_str}
     # 填充参数
