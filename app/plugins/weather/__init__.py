@@ -71,7 +71,7 @@ async def _(session: CommandSession):
         session.state['target_time'] = target_time
 
 
-@on_natural_language(keywords={'天气'})
+@on_natural_language(keywords={'天气怎么样'})
 async def _(session: NLPSession):
     # 去掉消息首尾的空白符
     stripped_msg = session.msg_text.strip()
@@ -92,6 +92,6 @@ async def _(session: NLPSession):
         target_time.append("接下来五天")
 
     if location == '':
-        return IntentCommand(90.0, name='查天气', args={'target_time': target_time})
+        return IntentCommand(80.0, name='查天气', args={'target_time': target_time})
     else:
-        return IntentCommand(90.0, name='查天气', args={'target_time': target_time}, current_arg=location)
+        return IntentCommand(80.0, name='查天气', args={'target_time': target_time}, current_arg=location)

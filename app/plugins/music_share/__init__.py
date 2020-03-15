@@ -8,7 +8,7 @@ from app.utils import word_cut
 from .data_source import get_music_id, get_music_styles
 
 
-@on_command('歌曲分享')
+@on_command('分享歌曲')
 async def music(session: CommandSession):
     t = session.get('type', prompt="你想用QQ还是网易呢？")
     style = session.get('style', prompt="想听哪种歌呢？")

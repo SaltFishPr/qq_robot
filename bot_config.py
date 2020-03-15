@@ -5,7 +5,7 @@ from nonebot.default_config import *
 # 超级用户
 SUPERUSERS = {123456789}
 # 命令开头为中文或者英文感叹号
-COMMAND_START = {'!', '！'}
+COMMAND_START = {''}
 # nonebot.run()的ip和端口
 HOST = '127.0.0.1'
 PORT = 8999

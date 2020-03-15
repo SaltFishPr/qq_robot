@@ -3,8 +3,15 @@
 import json
 import requests
 
+
+def a(**kwargs):
+    print(type(kwargs), kwargs)
+
+
 if __name__ == '__main__':
-    s = "上海 [1,2,3]"
-    l = s.split()[1]
-    print(type(json.loads(l)), json.loads(l))
+    d = {'app_key': "13145646", 'asad': "sald"}
+    t = {}
+    for key,value in d.items():
+        t[key]=value
+    print(t)
     pass
